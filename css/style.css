@@ -1,6 +1,6 @@
 body{
 	margin: 0;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Raleway', sans-serif;
 }
 h1,h2,h3,h4,h5{
 	padding: 0px;
@@ -16,6 +16,9 @@ h1,h2,h3,h4,h5{
 	
 	padding:10px;
 	padding-left:20px;
+}
+#general{
+	font-weight: bold;
 }
 #prediction-forms{
 	width:40%;	
@@ -62,4 +65,53 @@ h1,h2,h3,h4,h5{
 
 #negatives{
 	font-color:#C41E3A;
+}
+
+#process{
+	padding: 0 20px;
+}
+#pos-tagging,#translation,#sentiment_score{
+	width:100%;
+	border:solid 1px #999;
+	margin: 10 0px;
+	min-height: 100px;
+}
+.pos_entry{
+	display:inline-block;
+	margin:0px 5px;
+	margin-top:5px;
+	margin-bottom: 5px;
+}
+#translation,#sentiment_score{
+	padding:5px;
+
+}
+.trans_entry{
+	padding:3px 0px;
+}
+ul{
+	list-style-type: square;
+}
+.wordx{
+	display:inline-block;
+	padding:3 12px;
+	background-color:#AAA;
+	color:white;
+}
+
+.tagx{
+	display: inline-block;
+	padding:3px 8px;
+}
+
+.green{
+	color:#46BFBD;
+}
+
+.red{
+	color:#F7464A;
+}
+
+.score_entry{
+	padding:3px;
 }
