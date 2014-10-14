@@ -12,6 +12,7 @@ $neg_score=0;
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
 		<script src="Chart.min.js"></script>
 		<script src="jquery.js"></script>
+		
 	</head>
 
 	<body>
@@ -21,10 +22,11 @@ $neg_score=0;
 			</div>
 			<div id="prediction-forms">
 				<h5>Enter the text you wanted to be analyzed: </h5>
-				<small>*Just a note: this is a prediction, so there is quite a chance that it is wrong. The percentages means that the analyzer is [x]% sure that the text is positive/ negative</small>
+				<small>*This is a prediction. It will show the positive and negative percentage of the text you inputted</small>
 				<br>
 				<textarea id="input"></textarea>
 				<button id="analyze">Predict sentiment</button>
+				<small>[<a href="multi.php" id="use-multi"> or go to the multiple prediction page </a>]</small>
 			</div>
 		
 			<div id="results">
@@ -36,9 +38,9 @@ $neg_score=0;
 					<span id="general"></span></small>
 					<br><hr>
 				<small>Prediction: <span id="perc_pos">0%</span> positive , <span id="perc_neg">0%</span> negative</small></p>
-				<canvas id="myChart" width="150" height="150"></canvas>
-				<p><small>Positives: <font color="#009E60" ><span id="positives"></span></font></small></p>
-				<p><small>Negatives: <font color="#C41E3A" ><span id="negatives"></span></font></small></p>
+				<div><canvas id="myChart" width="150" height="150"></canvas></div>
+				<p><small>Positive: <font color="#009E60" ><span id="positives"></span></font></small></p>
+				<p><small>Negative: <font color="#C41E3A" ><span id="negatives"></span></font></small></p>
 			</div>
 			<hr>
 			
@@ -107,6 +109,11 @@ $neg_score=0;
 
 	var result = ""
 	$(document).ready(function(){
+		<?php
+			if(isset($_GET['sentence'])){
+				echo "$('#input').val('".$_GET['sentence']."');";
+			}
+		?>
 		$("#analyze").click(function(){
 			var input = $("#input").val();
 			var patt_pos = new RegExp("<positive>(.+)</positive>");
@@ -145,10 +152,10 @@ $neg_score=0;
 
 					
 
-					if(perc_neg > perc_pos && Math.abs(org_pos-org_neg)>0.03){
+					if(perc_neg > perc_pos && (Math.abs(org_pos-org_neg)>0.039 || (perc_neg>10 && perc_pos>10) ) ){
 						$("#general").html("<font color='#F7464A'>negative</font>");
 					}
-					else if(perc_pos > perc_neg && Math.abs(org_pos-org_neg)>0.03){
+					else if(perc_pos > perc_neg && (Math.abs(org_pos-org_neg)>0.039 || (perc_neg>10 && perc_pos>10)) ){
 						$("#general").html("<font color='#46BFBD'>positive</font>");
 					}
 					else{
@@ -161,6 +168,9 @@ $neg_score=0;
 						window.myPie = new Chart(ctx).Pie(data);
 						$("#perc_pos").html(perc_pos+"%");
 					$("#perc_neg").html(perc_neg+"%");
+					}
+					else{
+						$("#myChart").parent().html("<canvas id='myChart' width='150' height='150'>")
 					}
 					
 
@@ -236,11 +246,11 @@ $neg_score=0;
 						if(pos_s != 0 || neg_s != 0){
 							word_builder +=" " +word;
 							scoring += "<div class='score_entry'>"+word_builder+" : (<span class='green'>"+pos_s+"</span> , <span class='red'>"+neg_s+"</span>)</div>"
-							if(pos_s > neg_s && (Math.abs(pos_s - neg_s)>0.03)){
+							if(pos_s > neg_s && (Math.abs(pos_s - neg_s)>0.039)){
 								pos_builder+="<br>"+word_builder;
 
 							}
-							else if(pos_s < neg_s && (Math.abs(pos_s - neg_s)>0.03) ){
+							else if(pos_s < neg_s && (Math.abs(pos_s - neg_s)>0.039) ){
 								neg_builder+="<br>"+word_builder;
 							}
 							else{}

@@ -54,7 +54,12 @@ h1,h2,h3,h4,h5{
 	padding:7px;
 
 }
-
+#use-multi{
+	color:black;
+	padding-left:7px;
+	text-decoration: none;
+	text-align: center;
+}
 .clear{
 	clear:both;
 }
@@ -114,4 +119,74 @@ ul{
 
 .score_entry{
 	padding:3px;
+}
+
+
+#upload-div{
+	padding:20px;
+	background-color:#450000;
+	color:white;
+}
+#upload-div input[type='file']{
+	border:0px;
+	font-family: 'Raleway', sans-serif;
+}
+
+#file-uploader{
+	margin-top:10px;
+}
+
+#upload-div div{
+	display: inline-block;
+	vertical-align: top;
+
+}
+
+#upload-button-div{
+	float: right;
+
+}
+#message-upload{
+
+}
+#up{
+	height: 53px;
+	width:360px;
+	background-color:#FF4336;
+	border: 0px;
+	color:white;
+	font-family: 'Raleway', sans-serif;
+	cursor:pointer;
+}
+
+.entry{
+	padding-left:5px;
+	padding: 5px 10px;
+	background-color: #1E0941;
+	color:white;
+	margin:5px 0px;
+}
+.entry:hover{
+	background-color: #880B4D;
+
+}
+
+.sentence{
+	width: 50%;
+	display:inline-block;
+	vertical-align: top;
+}
+.polarity-text{
+	display: inline-block;
+	width:30%;
+	text-align: center;
+	vertical-align: top;
+}
+.gotoMain{
+	width: 18%;
+	display: inline-block;
+}
+.gotoMain img{
+	margin-top:-5px;
+	float:right;
 }
